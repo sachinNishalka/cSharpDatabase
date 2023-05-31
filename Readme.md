@@ -1,5 +1,7 @@
 # Connecting SQL DB TO C# Application
 
+## Insert Data
+
 1. import the library file
 
 ``` c#
@@ -70,3 +72,39 @@ int id = int.Parse(textBox1.Text);
             
             
 ```
+
+## Delete Data
+
+``` c#
+
+private void button1_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(textBox1.Text);
+
+            try
+            {
+
+                SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\nisha\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\testdb.mdf;Integrated Security=True;Connect Timeout=30");
+
+                String sql = "delete from info WHERE id = '"+ id +"'";
+
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                cmd.ExecuteNonQuery();
+
+                MessageBox.Show("Deleted");
+
+                conn.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+ 
+```
+
+
